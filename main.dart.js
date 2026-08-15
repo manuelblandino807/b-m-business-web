@@ -47387,7 +47387,7 @@ l=q.x.h(0,"category")
 if(l==null)l=""
 k=q.x.h(0,"themeId")
 if(k==null)k="blue_ocean"
-b5=B.a1(["owner_id",n,"business_name",p,"category",l,"theme_id",k,"profile_data",b4,"updated_at",new B.dy(Date.now(),0,!1).aCK().F3()],b2,b3)
+b5=B.a1(["owner_id",n,"business_name",p,"category",l,"theme_id",k,"profile_data",b4,"updated_at",new B.dy(Date.now(),0,!1).aCK().F3(),"is_published",!0],b2,b3)
 s=m==null?3:5
 break
 case 3:p=q.x.h(0,"businessName")
@@ -47401,7 +47401,6 @@ b8=b7+"-"+A.n.a1(n,0,8)
 b9=b9.hM("businesses")
 b3=B.ct(b5,b2,b3)
 b3.m(0,"slug",b8)
-b3.m(0,"is_published",!1)
 b2=B.ct(b9.b,b2,b2)
 b2.G(0,"Prefer")
 s=6
