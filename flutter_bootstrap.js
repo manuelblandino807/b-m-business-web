@@ -36,8 +36,71 @@ if (!window._flutter) {
 }
 _flutter.buildConfig = {"engineRevision":"d3d45dcf251823c1769909cd43698d126db38deb","builds":[{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"main.dart.js"},{}]};
 
-_flutter.loader.load({
-  serviceWorkerSettings: {
-    serviceWorkerVersion: "26439218"
+
+async function checkForPwaUpdate() {
+  if (!('serviceWorker' in navigator)) {
+    return false;
   }
-});
+
+  try {
+    const registration = await navigator.serviceWorker.getRegistration();
+
+    if (!registration) {
+      return false;
+    }
+
+    await registration.update();
+
+    if (registration.installing) {
+      await new Promise((resolve) => {
+        const worker = registration.installing;
+
+        const handleStateChange = () => {
+          if (worker.state === 'installed' || worker.state === 'redundant') {
+            worker.removeEventListener('statechange', handleStateChange);
+            resolve();
+          }
+        };
+
+        worker.addEventListener('statechange', handleStateChange);
+      });
+    }
+
+    if (!registration.waiting) {
+      return false;
+    }
+
+    registration.waiting.postMessage('skipWaiting');
+
+    await new Promise((resolve) => {
+      const timeout = setTimeout(resolve, 5000);
+
+      navigator.serviceWorker.addEventListener(
+        'controllerchange',
+        () => {
+          clearTimeout(timeout);
+          resolve();
+        },
+        { once: true },
+      );
+    });
+
+    window.location.reload();
+    return true;
+  } catch (error) {
+    console.warn('Controllo aggiornamento PWA non riuscito:', error);
+    return false;
+  }
+}
+
+async function startApp() {
+  const updateActivated = await checkForPwaUpdate();
+
+  if (updateActivated) {
+    return;
+  }
+
+  _flutter.loader.load();
+}
+
+startApp();
