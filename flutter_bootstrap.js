@@ -49,44 +49,47 @@ async function checkForPwaUpdate() {
       return false;
     }
 
-    await registration.update();
+    const previousController = navigator.serviceWorker.controller;
+    let controllerChanged = false;
 
-    if (registration.installing) {
-      await new Promise((resolve) => {
-        const worker = registration.installing;
-
-        const handleStateChange = () => {
-          if (worker.state === 'installed' || worker.state === 'redundant') {
-            worker.removeEventListener('statechange', handleStateChange);
-            resolve();
-          }
-        };
-
-        worker.addEventListener('statechange', handleStateChange);
-      });
-    }
-
-    if (!registration.waiting) {
-      return false;
-    }
-
-    registration.waiting.postMessage('skipWaiting');
-
-    await new Promise((resolve) => {
-      const timeout = setTimeout(resolve, 5000);
-
+    const controllerChangePromise = new Promise((resolve) => {
       navigator.serviceWorker.addEventListener(
         'controllerchange',
         () => {
-          clearTimeout(timeout);
+          controllerChanged = true;
           resolve();
         },
         { once: true },
       );
     });
 
-    window.location.reload();
-    return true;
+    await registration.update();
+
+    const newWorker = registration.installing || registration.waiting;
+
+    if (!newWorker) {
+      return false;
+    }
+
+    if (registration.waiting) {
+      registration.waiting.postMessage('skipWaiting');
+    }
+
+    await Promise.race([
+      controllerChangePromise,
+      new Promise((resolve) => setTimeout(resolve, 8000)),
+    ]);
+
+    const hasNewController =
+        controllerChanged ||
+        navigator.serviceWorker.controller !== previousController;
+
+    if (hasNewController) {
+      window.location.reload();
+      return true;
+    }
+
+    return false;
   } catch (error) {
     console.warn('Controllo aggiornamento PWA non riuscito:', error);
     return false;
