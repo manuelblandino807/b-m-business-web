@@ -50867,7 +50867,7 @@ h=B.kt(a3,a3,h,a3,a3,a3,a3,a3,a3,A.H,a3,a3,A.ik,a3,new B.bG(B.b9(13),A.O),a3,a3,
 s=s.h(0,a2.d).h(0,"share_business")
 s.toString
 A.o.T(e,B.b([q,A.tl,d,A.et,b,A.aS,B.eX(B.cz(B.oU(A.Ya,B.a1(s,a3,a3,a3,A.fm,a3,a3,a3),new B.ayO(a2,j),h),a3,210),a3,a3)],g))}e.push(A.O3)
-e.push(A.b3X)
+e.push(A.b3Y)
 return B.j1(f,a3,B.fX(!0,B.uY(B.eX(B.cU(e,A.an,A.ab,A.aF,0,A.av),a3,a3),A.wp,a3,A.bg),A.aO,!0),a3)}}
 B.ayD.prototype={
 $0(){var s,r,q=this,p=null,o="themeId",n="category",m="businessName",l="logoPath",k="description",j="phone",i="email",h="website",g="instagram",f="tiktok",e="facebook",d="whatsapp",c="youtube",b="linkedin",a="booking",a0="tripadvisor",a1="mioDottore",a2="glovo",a3="justEat",a4="trivago",a5="googleReviews",a6="googleMaps",a7="hoursJson",a8="galleryJson",a9="menuUrl",b0="servicesJson",b1="primaryAction",b2=q.b,b3=q.a,b4=b3.a
@@ -129407,8 +129407,8 @@ A.aWa=new B.yA(4,"unknown")
 A.aWb=new B.Gy(null,null,null,null,null,null,null,null,null,null,null,null,null)
 A.TM=new B.J(1,0.07058823529411765,0.22745098039215686,0.5490196078431373,A.C)
 A.b0A=new B.z(!0,A.TM,null,null,null,null,12,A.fT,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-A.b3Y=new B.dN("Versione 1.2",null,A.b0A,null,null,null,null,null,null,null)
-A.aWc=new B.pO(null,null,12,12,null,null,A.b3Y,null)
+A.b3X=new B.dN("Versione 1.3",null,A.b0A,null,null,null,null,null,null,null)
+A.aWc=new B.pO(null,null,12,12,null,null,A.b3X,null)
 A.MN=new B.us(1,"inAppWebView")
 A.MO=new B.us(2,"inAppBrowserView")
 A.aWd=new B.us(3,"externalApplication")
@@ -130173,7 +130173,7 @@ A.b3U=new B.dN("Nessuna installazione attiva.",null,null,null,null,null,null,nul
 A.b3V=new B.dN("Elimina servizio",null,null,null,null,null,null,null,null,null)
 A.b3W=new B.dN("Bloccare il cliente?",null,null,null,null,null,null,null,null,null)
 A.b1b=new B.z(!0,A.eN,null,null,null,null,13,A.aq,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-A.b3X=new B.dN("Powered by B-M App",null,A.b1b,null,null,null,null,null,null,null)
+A.b3Y=new B.dN("Powered by B-M App",null,A.b1b,null,null,null,null,null,null,null)
 A.b3Z=new B.dN("Liberare l\u2019installazione?",null,null,null,null,null,null,null,null,null)
 A.b4_=new B.dN("B-M Business",null,A.Ou,null,null,null,null,null,null,null)
 A.b40=new B.dN("B-M Business",null,A.fm,null,null,null,null,null,null,null)
